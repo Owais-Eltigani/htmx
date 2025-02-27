@@ -14,16 +14,36 @@
   <body>
     <div class="bg-sky-50 text-center space-y-5 py-5">
       <h1 class="text-2xl">simple request</h1>
-      <!-- hx-get="https://jsonplaceholder.typicode.com/users/1"  fix why this not working-->
       <button
-        hx-get="http://localhost:5000/welcome"
+        hx-get="/users"
         hx-target="#result"
+        hx-confirm="do you want to fetch all users?"
         hx-trigger="click"
-        hx-swap="outerHTML"
+        class="bg-blue-500 rounded-xl font-bold text-white p-5 text-center">
+        fetch all users
+      </button>
+      <button
+        hx-get="/other-users"
+        hx-target="#result"
+        hx-indicator="#loading"
+        hx-trigger="click"
+        class="bg-blue-500 rounded-xl font-bold text-white p-5 text-center">
+        outside users
+      </button>
+      <button
+        hx-get="/users/id"
+        hx-target="#result"
+        hx-vals='{"id":"1"}'
+        hx-trigger="click"
         class="bg-blue-500 rounded-xl text-white p-5 text-center">
-        fetch users
+        fetch user with id
       </button>
       <div id="result"></div>
+      <div class="htmx-indicator" id="loading">
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </div>
     </div>
   </body>
 </html>
